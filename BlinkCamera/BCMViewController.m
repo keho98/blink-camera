@@ -6,17 +6,22 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
+#import <FastttCamera.h>
 #import "BCMViewController.h"
 
-@interface BCMViewController ()
-
+@interface BCMViewController () <FastttCameraDelegate>
+@property (nonatomic, strong) FastttCamera *fastCamera;
 @end
 
 @implementation BCMViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    _fastCamera = [[FastttCamera alloc] init];
+    self.fastCamera.delegate = self;
+    
+    [self fastttAddChildViewController:self.fastCamera];
+    self.fastCamera.view.frame = self.view.frame;
 }
 
 - (void)didReceiveMemoryWarning {

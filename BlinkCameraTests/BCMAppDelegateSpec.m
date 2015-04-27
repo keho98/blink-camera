@@ -7,8 +7,10 @@ SPEC_BEGIN(BCMAppDelegateSpec)
 describe(@"BCMAppDelegate", ^{
     context(@"on load", ^{
         __block BCMAppDelegate *subject;
+        __block UIApplication *sharedApplication;
         beforeEach(^{
             subject = [[BCMAppDelegate alloc] init];
+            sharedApplication = [UIApplication sharedApplication];
         });
         
         it(@"should create a root view controller", ^{
