@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "BCMAppDelegate.h"
 
-@interface AppDelegate ()
+@interface BCMAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation BCMAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

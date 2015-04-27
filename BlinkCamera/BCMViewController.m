@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BCMViewController.h"
 
-@interface ViewController ()
+@interface BCMViewController ()
 
 @end
 
-@implementation ViewController
+@implementation BCMViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
