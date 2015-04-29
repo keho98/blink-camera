@@ -1,40 +1,22 @@
-//
-//  BCMViewControllerSpec.m
-//  BlinkCamera
-//
-//  Created by Kevin Ho on 4/27/15.
-//  Copyright (c) 2015 Keiho. All rights reserved.
-//
+#import "Kiwi.h"
+#import "BCMViewController.h"
+#import <FastttCamera.h>
 
-#import <UIKit/UIKit.h>
-#import <XCTest/XCTest.h>
+SPEC_BEGIN(BCMViewControllerSpec)
 
-@interface BCMViewControllerSpec : XCTestCase
+describe(@"BCMViewController", ^{
+    context(@"on load", ^{
+        __block BCMViewController *subject;
+        beforeEach(^{
+            subject = [[BCMViewController alloc] init];
+            [[subject.view shouldNot] beNil];
+        });
+        
+        it(@"should have a fasttt camera property", ^{
+            [[subject.fastCamera shouldNot] beNil];
+        });
+    });
+});
 
-@end
+SPEC_END
 
-@implementation BCMViewControllerSpec
-
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
-@end

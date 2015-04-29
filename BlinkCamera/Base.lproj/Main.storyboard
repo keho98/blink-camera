@@ -15,8 +15,32 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytb-T7-BdA">
+                                <rect key="frame" x="277" y="28" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-0f-WXD">
+                                <rect key="frame" x="0.0" y="66" width="600" height="494"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="P8D-0f-WXD" secondAttribute="bottom" constant="40" id="HTe-HB-CJD"/>
+                            <constraint firstAttribute="centerX" secondItem="ytb-T7-BdA" secondAttribute="centerX" id="SXf-5R-3oi"/>
+                            <constraint firstItem="P8D-0f-WXD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Wnu-S4-9Oq"/>
+                            <constraint firstItem="ytb-T7-BdA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="gcx-S2-b8o"/>
+                            <constraint firstItem="P8D-0f-WXD" firstAttribute="top" secondItem="ytb-T7-BdA" secondAttribute="bottom" constant="8" id="r1e-Y4-sVL"/>
+                            <constraint firstAttribute="trailing" secondItem="P8D-0f-WXD" secondAttribute="trailing" id="vJb-dD-MjY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fastttCameraView" destination="P8D-0f-WXD" id="Vub-Xw-SXM"/>
+                        <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

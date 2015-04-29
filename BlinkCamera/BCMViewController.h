@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FastttCamera.h>
 
-@interface BCMViewController : UIViewController
-
+@interface BCMViewController : UIViewController <FastttCameraDelegate>
+@property (nonatomic, strong) FastttCamera *fastCamera;
 
 @end
 
