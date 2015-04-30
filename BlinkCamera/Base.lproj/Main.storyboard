@@ -17,13 +17,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytb-T7-BdA">
-                                <rect key="frame" x="277" y="28" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="259" y="28" width="82" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Take Photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapTakePhotoButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hai-8J-uHg"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-0f-WXD">
-                                <rect key="frame" x="0.0" y="66" width="600" height="494"/>
+                                <rect key="frame" x="0.0" y="68" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>

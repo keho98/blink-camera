@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */; };
 		D208FC851AEF5E780006D06C /* BCMViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC841AEF5E780006D06C /* BCMViewControllerSpec.m */; };
+		D208FC881AF1FFBD0006D06C /* BCMBlinkDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */; };
+		D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D208FC891AF1FFED0006D06C /* AVFoundation.framework */; };
 		D24B866E1AEB484300CEDE67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B866D1AEB484300CEDE67 /* main.m */; };
 		D24B86711AEB484300CEDE67 /* BCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B86701AEB484300CEDE67 /* BCMAppDelegate.m */; };
 		D24B86741AEB484300CEDE67 /* BCMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B86731AEB484300CEDE67 /* BCMViewController.m */; };
@@ -37,6 +39,9 @@
 		6484030B58658070762A0D83 /* Pods-BlinkCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCamera/Pods-BlinkCamera.release.xcconfig"; sourceTree = "<group>"; };
 		7DA7CE6BF2B7F242E8BBD7A5 /* Pods-BlinkCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCameraTests/Pods-BlinkCameraTests.release.xcconfig"; sourceTree = "<group>"; };
 		D208FC841AEF5E780006D06C /* BCMViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMViewControllerSpec.m; sourceTree = "<group>"; };
+		D208FC861AF1FFBD0006D06C /* BCMBlinkDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMBlinkDetector.h; sourceTree = "<group>"; };
+		D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMBlinkDetector.m; sourceTree = "<group>"; };
+		D208FC891AF1FFED0006D06C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D24B86681AEB484300CEDE67 /* BlinkCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24B866C1AEB484300CEDE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D24B866D1AEB484300CEDE67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */,
 				CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +81,7 @@
 		909C0C3B8CA15EE1CCC7031C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D208FC891AF1FFED0006D06C /* AVFoundation.framework */,
 				152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */,
 				0A987D2FE78FC8A9C926D940 /* libPods-BlinkCameraTests.a */,
 			);
@@ -109,6 +116,8 @@
 				D24B86721AEB484300CEDE67 /* BCMViewController.h */,
 				D24B86731AEB484300CEDE67 /* BCMViewController.m */,
 				D24B86751AEB484300CEDE67 /* Main.storyboard */,
+				D208FC861AF1FFBD0006D06C /* BCMBlinkDetector.h */,
+				D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */,
 				D24B86781AEB484300CEDE67 /* Images.xcassets */,
 				D24B867A1AEB484300CEDE67 /* LaunchScreen.xib */,
 				D24B866B1AEB484300CEDE67 /* Supporting Files */,
@@ -323,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24B86741AEB484300CEDE67 /* BCMViewController.m in Sources */,
+				D208FC881AF1FFBD0006D06C /* BCMBlinkDetector.m in Sources */,
 				D24B86711AEB484300CEDE67 /* BCMAppDelegate.m in Sources */,
 				D24B866E1AEB484300CEDE67 /* main.m in Sources */,
 			);
