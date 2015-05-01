@@ -28,7 +28,13 @@
 
 - (void)configureSession
 {
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"position", AVCaptureDevicePositionBack];
+    
+    AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
+    if (!device) {
+        @throw [NSError errorWithDomain:@"BCMBlinkDetector" code:0 userInfo:nil];
+    }
+    
     NSError *error;
     AVCaptureDeviceInput *cameraDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
     if ([self.session canAddInput:cameraDeviceInput]) {
