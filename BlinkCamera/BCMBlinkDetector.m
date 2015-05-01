@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
-#import <AVFoundation/AVFoundation.h>
 #import "BCMBlinkDetector.h"
 
 @interface BCMBlinkDetector ()
@@ -28,7 +27,7 @@
 
 - (void)configureSession
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @"position", AVCaptureDevicePositionBack];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionBack];
     
     AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
     if (!device) {

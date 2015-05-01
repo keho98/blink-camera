@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface BCMBlinkDetector : NSObject
+@property AVCaptureDevice *device;
 
 @end

@@ -5,13 +5,13 @@ SPEC_BEGIN(BCM)
 
 describe(@"BCMViewController", ^{
     context(@"on load", ^{
-        __block BCMViewController *subject;
+        __block BCMBlinkDetector *subject;
         beforeEach(^{
-            subject = [[BCMViewController alloc] init];
+            subject = [[BCMBlinkDetector alloc] init];
         });
         
-        it(@"should have a fasttt camera property", ^{
-            [[subject.fastCamera shouldNot] beNil];
+        it(@"The selected device should be a front facing camera", ^{
+            [[theValue([subject.device position]) should] equal:theValue(AVCaptureDevicePositionFront)];
         });
     });
 });
