@@ -1,9 +1,9 @@
 #import "Kiwi.h"
 #import "BCMBlinkDetector.h"
 
-SPEC_BEGIN(BCM)
+SPEC_BEGIN(BCMBlinkDetectorSpec)
 
-describe(@"BCMViewController", ^{
+describe(@"BCMBlinkDetector", ^{
     context(@"on load", ^{
         __block BCMBlinkDetector *subject;
         beforeEach(^{

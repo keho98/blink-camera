@@ -7,20 +7,36 @@
 //
 
 #import "BCMViewController.h"
+#import "BCMBlinkDetector.h"
 
 @interface BCMViewController ()
 @property (weak, nonatomic) IBOutlet UIView *fastttCameraView;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
+@property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 
 @end
 
 @implementation BCMViewController
 
+#pragma mark - View Controller
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self _init];
+    }
+    return self;
+}
+
+- (void) _init {
+    _fastCamera = [[FastttCamera alloc] init];
+    self.fastCamera.delegate = self;
+    self.blinkDetector = [[BCMBlinkDetector alloc] init];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _fastCamera = [[FastttCamera alloc] init];
-    self.fastCamera.delegate = self;
     
     [self fastttAddChildViewController:self.fastCamera];
     self.fastCamera.view.frame = self.fastttCameraView.frame;
@@ -31,13 +47,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)didTapTakePhotoButton:(id)sender {
-    
-}
 
 - (BOOL)shouldAutorotate
 {
     return NO;
+}
+
+
+#pragma mark - IBAction
+
+- (IBAction)didTapTakePhotoButton:(id)sender {
+    
 }
 
 @end
