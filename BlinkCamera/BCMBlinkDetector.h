@@ -9,7 +9,7 @@
 @import UIKit;
 @import AVFoundation;
 
-@interface BCMBlinkDetector : NSObject <AVCaptureFileOutputRecordingDelegate>
+@interface BCMBlinkDetector : NSObject <AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 @property AVCaptureDevice *device;
 
 - (void)record;

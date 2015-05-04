@@ -10,6 +10,7 @@
 
 @interface BCMBlinkDetector ()
 @property (nonatomic, strong) AVCaptureSession *session;
+@property (nonatomic, assign) BOOL deviceAuthorized;
 
 @end
 
@@ -17,6 +18,8 @@
 
 - (void)configureNewSession
 {
+    [self requestPermissions];
+    
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     self.session = session;
     
@@ -25,6 +28,7 @@
     AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
     NSLog(@"Device: %@", device);
     if (!device) {
+        NSLog(@"No device found.");
         return;
     }
     
@@ -32,6 +36,16 @@
     AVCaptureDeviceInput *cameraDeviceInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
     if ([self.session canAddInput:cameraDeviceInput]) {
         [self.session addInput:cameraDeviceInput];
+    } else if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        NSLog(@"Could not add input");
+        return;
     }
     
     AVCaptureVideoDataOutput *videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
@@ -41,13 +55,11 @@
     [videoDataOutput setVideoSettings:rgbOutputSettings];
     videoDataOutput.alwaysDiscardsLateVideoFrames = YES;
     
-    if (error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+    dispatch_queue_t videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
+    [videoDataOutput setSampleBufferDelegate:self queue:videoDataOutputQueue];
+    
+    if ([session canAddOutput:videoDataOutput]) {
+        [session addOutput:videoDataOutput];
     }
 }
 
@@ -71,6 +83,30 @@
     NSString *documentDirectory = [documentDirectories firstObject];
     
     return [documentDirectory stringByAppendingPathComponent:key];
+}
+
+- (void)requestPermissions {
+    NSString *mediaType = AVMediaTypeVideo;
+    
+    [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+        if (granted)
+        {
+            //Granted access to mediaType
+            [self setDeviceAuthorized:YES];
+        }
+        else
+        {
+            //Not granted access to mediaType
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[[UIAlertView alloc] initWithTitle:@"AVCam!"
+                                            message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+                                           delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil] show];
+                [self setDeviceAuthorized:NO];
+            });
+        }
+    }];
 }
 
 @end
