@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
+@import UIKit;
+@import AVFoundation;
 
 @interface BCMBlinkDetector : NSObject <AVCaptureFileOutputRecordingDelegate>
 @property AVCaptureDevice *device;
 
 - (void)record;
+- (void)configureNewSession;
+- (AVCaptureVideoPreviewLayer *)previewLayer;
+
 @end

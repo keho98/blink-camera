@@ -11,6 +11,7 @@
 
 @interface BCMViewController : UIViewController <FastttCameraDelegate>
 @property (nonatomic, strong) FastttCamera *fastCamera;
+@property (weak, nonatomic) IBOutlet UIView *blinkView;
 
 @end
 

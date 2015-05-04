@@ -15,21 +15,15 @@
 
 @implementation BCMBlinkDetector
 
-- (instancetype)init
+- (void)configureNewSession
 {
-    self = [super init];
-    if (self) {
-        self.session = [[AVCaptureSession alloc] init];
-        [self configureSession];
-    }
-    return self;
-}
-
-- (void)configureSession
-{
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    self.session = session;
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionBack];
     
     AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
+    NSLog(@"Device: %@", device);
     if (!device) {
         return;
     }
@@ -39,14 +33,34 @@
     if ([self.session canAddInput:cameraDeviceInput]) {
         [self.session addInput:cameraDeviceInput];
     }
+    
+    AVCaptureVideoDataOutput *videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
+    NSDictionary *rgbOutputSettings = [NSDictionary dictionaryWithObject:
+                                       [NSNumber numberWithInt:kCMPixelFormat_32BGRA]
+                                                                  forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    [videoDataOutput setVideoSettings:rgbOutputSettings];
+    videoDataOutput.alwaysDiscardsLateVideoFrames = YES;
+    
+    if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 - (void)record {
-    [self.session startRunning];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.session startRunning];
+    }];
 }
 
 - (AVCaptureVideoPreviewLayer *)previewLayer {
-    return [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    
+    return previewLayer;
 }
 
 - (NSString *)filePathForKey:(NSString *)key

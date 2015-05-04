@@ -17,6 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyk-20-K1i" userLabel="Blink View">
+                                <rect key="frame" x="16" y="68" width="568" height="524"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="GgG-jd-4gN"/>
+                                    <constraint firstAttribute="width" constant="300" id="qZe-c8-5jp"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GgG-jd-4gN"/>
+                                        <exclude reference="qZe-c8-5jp"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytb-T7-BdA">
                                 <rect key="frame" x="259" y="28" width="82" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -27,12 +41,9 @@
                                     <action selector="didTapTakePhotoButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hai-8J-uHg"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8D-0f-WXD">
-                                <rect key="frame" x="0.0" y="68" width="600" height="492"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ha-dz-JhR">
-                                <rect key="frame" x="24" y="29" width="50" height="30"/>
+                                <rect key="frame" x="24" y="28" width="53" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Record">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -43,18 +54,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dyk-20-K1i" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="A8K-SR-FfS"/>
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="centerY" secondItem="5Ha-dz-JhR" secondAttribute="centerY" id="B8A-Ag-hvM"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="P8D-0f-WXD" secondAttribute="bottom" constant="40" id="HTe-HB-CJD"/>
+                            <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="dyk-20-K1i" secondAttribute="leading" id="QfD-uI-6XV"/>
                             <constraint firstAttribute="centerX" secondItem="ytb-T7-BdA" secondAttribute="centerX" id="SXf-5R-3oi"/>
-                            <constraint firstItem="P8D-0f-WXD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Wnu-S4-9Oq"/>
+                            <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="Xne-xl-gjx"/>
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="gcx-S2-b8o"/>
                             <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="jaK-XX-1r3"/>
-                            <constraint firstItem="P8D-0f-WXD" firstAttribute="top" secondItem="ytb-T7-BdA" secondAttribute="bottom" constant="8" id="r1e-Y4-sVL"/>
-                            <constraint firstAttribute="trailing" secondItem="P8D-0f-WXD" secondAttribute="trailing" id="vJb-dD-MjY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dyk-20-K1i" secondAttribute="trailing" id="o2A-rd-mvg"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dyk-20-K1i" secondAttribute="bottom" constant="8" id="ucS-MI-Hpt"/>
+                            <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="5Ha-dz-JhR" secondAttribute="bottom" constant="8" id="wvN-Is-Ui0"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QfD-uI-6XV"/>
+                                <exclude reference="Xne-xl-gjx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="fastttCameraView" destination="P8D-0f-WXD" id="Vub-Xw-SXM"/>
                         <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
                     </connections>
                 </viewController>

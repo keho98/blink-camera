@@ -10,7 +10,6 @@
 #import "BCMBlinkDetector.h"
 
 @interface BCMViewController ()
-@property (weak, nonatomic) IBOutlet UIView *fastttCameraView;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 
@@ -28,10 +27,7 @@
     return self;
 }
 
-
 - (void) _init {
-    self.fastCamera = [[FastttCamera alloc] init];
-    self.fastCamera.delegate = self;
     self.blinkDetector = [[BCMBlinkDetector alloc] init];
 }
 
@@ -39,8 +35,12 @@
 {
     [super viewDidLoad];
     
-    [self fastttAddChildViewController:self.fastCamera];
-    self.fastCamera.view.frame = self.fastttCameraView.frame;
+    [self.blinkDetector configureNewSession];
+    
+    AVCaptureVideoPreviewLayer *previewLayer = [self.blinkDetector previewLayer];
+    previewLayer.frame = self.blinkView.bounds;
+    
+    [self.blinkView.layer insertSublayer:previewLayer atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +53,6 @@
 {
     return NO;
 }
-
 
 #pragma mark - IBAction
 
