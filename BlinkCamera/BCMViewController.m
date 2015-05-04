@@ -28,8 +28,9 @@
     return self;
 }
 
+
 - (void) _init {
-    _fastCamera = [[FastttCamera alloc] init];
+    self.fastCamera = [[FastttCamera alloc] init];
     self.fastCamera.delegate = self;
     self.blinkDetector = [[BCMBlinkDetector alloc] init];
 }
@@ -58,6 +59,10 @@
 
 - (IBAction)didTapTakePhotoButton:(id)sender {
     
+}
+
+- (IBAction)didTapRecordButton:(id)sender {
+    [self.blinkDetector record];
 }
 
 @end

@@ -9,11 +9,10 @@ describe(@"BCMViewController", ^{
         __block BCMViewController *subject;
         beforeEach(^{
             subject = [[BCMViewController alloc] init];
-            [[subject.view shouldNot] beNil];
         });
-        
-        it(@"should have a fasttt camera property", ^{
-            [[subject.fastCamera shouldNot] beNil];
+                
+        it(@"should not autorotate", ^{
+            [[theValue([subject shouldAutorotate]) should] equal:theValue(NO)];
         });
     });
 });

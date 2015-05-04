@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -30,13 +31,24 @@
                                 <rect key="frame" x="0.0" y="68" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ha-dz-JhR">
+                                <rect key="frame" x="24" y="29" width="50" height="30"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapRecordButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="31w-6a-10o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ytb-T7-BdA" firstAttribute="centerY" secondItem="5Ha-dz-JhR" secondAttribute="centerY" id="B8A-Ag-hvM"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="P8D-0f-WXD" secondAttribute="bottom" constant="40" id="HTe-HB-CJD"/>
                             <constraint firstAttribute="centerX" secondItem="ytb-T7-BdA" secondAttribute="centerX" id="SXf-5R-3oi"/>
                             <constraint firstItem="P8D-0f-WXD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Wnu-S4-9Oq"/>
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="gcx-S2-b8o"/>
+                            <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="jaK-XX-1r3"/>
                             <constraint firstItem="P8D-0f-WXD" firstAttribute="top" secondItem="ytb-T7-BdA" secondAttribute="bottom" constant="8" id="r1e-Y4-sVL"/>
                             <constraint firstAttribute="trailing" secondItem="P8D-0f-WXD" secondAttribute="trailing" id="vJb-dD-MjY"/>
                         </constraints>

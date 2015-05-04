@@ -31,7 +31,7 @@
     
     AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
     if (!device) {
-        @throw [NSError errorWithDomain:@"BCMBlinkDetector" code:0 userInfo:nil];
+        return;
     }
     
     NSError *error;
@@ -39,6 +39,24 @@
     if ([self.session canAddInput:cameraDeviceInput]) {
         [self.session addInput:cameraDeviceInput];
     }
+}
+
+- (void)record {
+    [self.session startRunning];
+}
+
+- (AVCaptureVideoPreviewLayer *)previewLayer {
+    return [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+}
+
+- (NSString *)filePathForKey:(NSString *)key
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                       NSUserDomainMask,
+                                                                       YES);
+    NSString *documentDirectory = [documentDirectories firstObject];
+    
+    return [documentDirectory stringByAppendingPathComponent:key];
 }
 
 @end

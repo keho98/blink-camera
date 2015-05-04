@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface BCMBlinkDetector : NSObject
+@interface BCMBlinkDetector : NSObject <AVCaptureFileOutputRecordingDelegate>
 @property AVCaptureDevice *device;
 
+- (void)record;
 @end

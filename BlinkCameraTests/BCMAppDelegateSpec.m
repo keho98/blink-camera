@@ -12,10 +12,6 @@ describe(@"BCMAppDelegate", ^{
             subject = [[BCMAppDelegate alloc] init];
             sharedApplication = [UIApplication sharedApplication];
         });
-        
-        it(@"should create a root view controller", ^{
-           [[subject.window.rootViewController should] beKindOfClass:[BCMViewController class]];
-        });
     });
 });
 
