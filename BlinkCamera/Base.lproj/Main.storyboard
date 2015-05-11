@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyk-20-K1i" userLabel="Blink View">
                                 <rect key="frame" x="16" y="68" width="568" height="524"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="GgG-jd-4gN"/>
                                     <constraint firstAttribute="width" constant="300" id="qZe-c8-5jp"/>
@@ -73,6 +73,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="blinkView" destination="dyk-20-K1i" id="0Qr-J3-TlU"/>
                         <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
                     </connections>
                 </viewController>
