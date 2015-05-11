@@ -23,7 +23,7 @@
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     self.session = session;
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionBack];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionFront];
     
     AVCaptureDevice *device = [[[AVCaptureDevice devices] filteredArrayUsingPredicate:predicate] firstObject];
     NSLog(@"Device: %@", device);

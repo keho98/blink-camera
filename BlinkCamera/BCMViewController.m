@@ -36,9 +36,12 @@
     [super viewDidLoad];
     
     [self.blinkDetector configureNewSession];
-    
+}
+
+- (void)viewDidLayoutSubviews
+{
     AVCaptureVideoPreviewLayer *previewLayer = [self.blinkDetector previewLayer];
-    previewLayer.frame = self.blinkView.bounds;
+    previewLayer.frame = self.blinkView.frame;
     
     [self.blinkView.layer insertSublayer:previewLayer atIndex:0];
 }
