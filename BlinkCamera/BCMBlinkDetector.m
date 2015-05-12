@@ -6,11 +6,18 @@
 //  Copyright (c) 2015 Keiho. All rights reserved.
 //
 
+#import <CoreImage/CoreImage.h>
+
 #import "BCMBlinkDetector.h"
 
 @interface BCMBlinkDetector ()
+
+// Session management.
+@property (nonatomic, strong) dispatch_queue_t sessionQueue;
 @property (nonatomic, strong) AVCaptureSession *session;
-@property (nonatomic, assign) BOOL deviceAuthorized;
+@property (nonatomic) AVCaptureDeviceInput *videoDeviceInput;
+
+@property (nonatomic, assign) BOOL isDeviceAuthorized;
 
 @end
 
@@ -30,6 +37,9 @@
     
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     self.session = session;
+    
+    dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
+    self.sessionQueue = sessionQueue;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionFront];
     
@@ -63,7 +73,7 @@
     [videoDataOutput setVideoSettings:rgbOutputSettings];
     videoDataOutput.alwaysDiscardsLateVideoFrames = YES;
     
-    dispatch_queue_t videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t videoDataOutputQueue = dispatch_queue_create("com.kho.BlinkCamera.VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
     [videoDataOutput setSampleBufferDelegate:self queue:videoDataOutputQueue];
     
     if ([session canAddOutput:videoDataOutput]) {
@@ -100,7 +110,7 @@
         if (granted)
         {
             //Granted access to mediaType
-            [self setDeviceAuthorized:YES];
+            [self setIsDeviceAuthorized:YES];
         }
         else
         {
@@ -111,7 +121,7 @@
                                            delegate:self
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] show];
-                [self setDeviceAuthorized:NO];
+                [self setIsDeviceAuthorized:NO];
             });
         }
     }];
@@ -121,7 +131,21 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    NSLog(@"Hello");
+    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
+    CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(__bridge NSDictionary *)attachments];
+    if (attachments)
+        CFRelease(attachments);
+    NSDictionary *imageOptions = nil;
+    UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
+    int exifOrientation;
+}
+
+#pragma mark - State Information
+
+- (BOOL)isSessionRunningAndDeviceAuthorized
+{
+    return [[self session] isRunning] && [self isDeviceAuthorized];
 }
 
 @end

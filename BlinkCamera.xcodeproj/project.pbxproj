@@ -19,6 +19,7 @@
 		D24B86791AEB484300CEDE67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D24B86781AEB484300CEDE67 /* Images.xcassets */; };
 		D24B867C1AEB484300CEDE67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24B867A1AEB484300CEDE67 /* LaunchScreen.xib */; };
 		D28449401AEDA712002D2A2D /* BCMAppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D284493F1AEDA712002D2A2D /* BCMAppDelegateSpec.m */; };
+		D2E27E491B01C4F000481B65 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E27E481B01C4F000481B65 /* CoreImage.framework */; };
 		E91D8320B32250989E81B090 /* libPods-BlinkCameraTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A987D2FE78FC8A9C926D940 /* libPods-BlinkCameraTests.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		D24B86811AEB484300CEDE67 /* BlinkCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24B86861AEB484300CEDE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D284493F1AEDA712002D2A2D /* BCMAppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMAppDelegateSpec.m; sourceTree = "<group>"; };
+		D2E27E481B01C4F000481B65 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E27E491B01C4F000481B65 /* CoreImage.framework in Frameworks */,
 				D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */,
 				CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */,
 			);
@@ -83,6 +86,7 @@
 		909C0C3B8CA15EE1CCC7031C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2E27E481B01C4F000481B65 /* CoreImage.framework */,
 				D208FC891AF1FFED0006D06C /* AVFoundation.framework */,
 				152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */,
 				0A987D2FE78FC8A9C926D940 /* libPods-BlinkCameraTests.a */,
