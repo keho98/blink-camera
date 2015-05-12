@@ -11,9 +11,15 @@
 
 @interface BCMBlinkDetector : NSObject <AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 @property AVCaptureDevice *device;
+@property (nonatomic, assign) NSInteger frameCount;
 
 - (void)record;
 - (void)configureNewSession;
 - (AVCaptureVideoPreviewLayer *)previewLayer;
+
+@end
+
+@protocol BCMBlinkDetectorDelegate
+- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 
 @end

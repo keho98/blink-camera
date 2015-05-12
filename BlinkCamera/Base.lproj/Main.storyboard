@@ -51,6 +51,12 @@
                                     <action selector="didTapRecordButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="31w-6a-10o"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pe7-6l-O1p">
+                                <rect key="frame" x="465" y="33" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -59,9 +65,11 @@
                             <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="dyk-20-K1i" secondAttribute="leading" id="QfD-uI-6XV"/>
                             <constraint firstAttribute="centerX" secondItem="ytb-T7-BdA" secondAttribute="centerX" id="SXf-5R-3oi"/>
                             <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="Xne-xl-gjx"/>
+                            <constraint firstItem="pe7-6l-O1p" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="13" id="YMh-4T-Wlb"/>
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="gcx-S2-b8o"/>
                             <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="jaK-XX-1r3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dyk-20-K1i" secondAttribute="trailing" id="o2A-rd-mvg"/>
+                            <constraint firstItem="pe7-6l-O1p" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="pbq-im-c0h"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dyk-20-K1i" secondAttribute="bottom" constant="8" id="ucS-MI-Hpt"/>
                             <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="5Ha-dz-JhR" secondAttribute="bottom" constant="8" id="wvN-Is-Ui0"/>
                         </constraints>
@@ -74,6 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="blinkView" destination="dyk-20-K1i" id="0Qr-J3-TlU"/>
+                        <outlet property="frameCountLabel" destination="pe7-6l-O1p" id="o9F-iX-OYc"/>
                         <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
                     </connections>
                 </viewController>

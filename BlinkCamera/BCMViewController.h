@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FastttCamera.h>
+#import "BCMBlinkDetector.h"
 
-@interface BCMViewController : UIViewController <FastttCameraDelegate>
-@property (nonatomic, strong) FastttCamera *fastCamera;
+@interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate>
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
+@property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
 
 @end
 

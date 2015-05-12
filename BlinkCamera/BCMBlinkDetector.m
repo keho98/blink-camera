@@ -16,6 +16,14 @@
 
 @implementation BCMBlinkDetector
 
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        self.frameCount = 0;
+    }
+    return self;
+}
+
 - (void)configureNewSession
 {
     [self requestPermissions];
@@ -107,6 +115,13 @@
             });
         }
     }];
+}
+
+#pragma mark - <AVCaptureVideoDataOutputSampleBufferDelegate>
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    NSLog(@"Hello");
 }
 
 @end

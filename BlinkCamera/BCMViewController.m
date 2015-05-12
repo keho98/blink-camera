@@ -7,7 +7,6 @@
 //
 
 #import "BCMViewController.h"
-#import "BCMBlinkDetector.h"
 
 @interface BCMViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
@@ -59,12 +58,21 @@
 
 #pragma mark - IBAction
 
-- (IBAction)didTapTakePhotoButton:(id)sender {
+- (IBAction)didTapTakePhotoButton:(id)sender
+{
     
 }
 
-- (IBAction)didTapRecordButton:(id)sender {
+- (IBAction)didTapRecordButton:(id)sender
+{
     [self.blinkDetector record];
+}
+
+#pragma mark - <BCMBlinkDetectorDelegate>
+
+- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer
+{
+    self.frameCountLabel.text = [NSString stringWithFormat:@"%zd", detector.frameCount];
 }
 
 @end
