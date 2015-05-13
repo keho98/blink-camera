@@ -1,11 +1,3 @@
-//
-//  BCMBlinkDetector.m
-//  BlinkCamera
-//
-//  Created by Kevin Ho on 4/29/15.
-//  Copyright (c) 2015 Keiho. All rights reserved.
-//
-
 #import <CoreImage/CoreImage.h>
 
 #import "BCMBlinkDetector.h"
@@ -27,6 +19,7 @@
     self = [super init];
     if (self) {
         self.frameCount = 0;
+        isUsingFrontFacingCamera = YES;
     }
     return self;
 }
@@ -38,7 +31,7 @@
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     self.session = session;
     
-    dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t sessionQueue = dispatch_queue_create("com.kho.BlinkCamera.VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
     self.sessionQueue = sessionQueue;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"position", AVCaptureDevicePositionFront];
@@ -73,8 +66,7 @@
     [videoDataOutput setVideoSettings:rgbOutputSettings];
     videoDataOutput.alwaysDiscardsLateVideoFrames = YES;
     
-    dispatch_queue_t videoDataOutputQueue = dispatch_queue_create("com.kho.BlinkCamera.VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
-    [videoDataOutput setSampleBufferDelegate:self queue:videoDataOutputQueue];
+    [videoDataOutput setSampleBufferDelegate:self queue:self.sessionQueue];
     
     if ([session canAddOutput:videoDataOutput]) {
         [session addOutput:videoDataOutput];
@@ -89,7 +81,7 @@
 
 - (AVCaptureVideoPreviewLayer *)previewLayer {
     AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    
+    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
     return previewLayer;
 }
 
@@ -139,6 +131,45 @@
     NSDictionary *imageOptions = nil;
     UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
     int exifOrientation;
+    
+    enum {
+        PHOTOS_EXIF_0ROW_TOP_0COL_LEFT			= 1, //   1  =  0th row is at the top, and 0th column is on the left (THE DEFAULT).
+        PHOTOS_EXIF_0ROW_TOP_0COL_RIGHT			= 2, //   2  =  0th row is at the top, and 0th column is on the right.
+        PHOTOS_EXIF_0ROW_BOTTOM_0COL_RIGHT      = 3, //   3  =  0th row is at the bottom, and 0th column is on the right.
+        PHOTOS_EXIF_0ROW_BOTTOM_0COL_LEFT       = 4, //   4  =  0th row is at the bottom, and 0th column is on the left.
+        PHOTOS_EXIF_0ROW_LEFT_0COL_TOP          = 5, //   5  =  0th row is on the left, and 0th column is the top.
+        PHOTOS_EXIF_0ROW_RIGHT_0COL_TOP         = 6, //   6  =  0th row is on the right, and 0th column is the top.
+        PHOTOS_EXIF_0ROW_RIGHT_0COL_BOTTOM      = 7, //   7  =  0th row is on the right, and 0th column is the bottom.
+        PHOTOS_EXIF_0ROW_LEFT_0COL_BOTTOM       = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
+    };
+    
+    switch (curDeviceOrientation) {
+        case UIDeviceOrientationPortraitUpsideDown:  // Device oriented vertically, home button on the top
+            exifOrientation = PHOTOS_EXIF_0ROW_LEFT_0COL_BOTTOM;
+            break;
+        case UIDeviceOrientationLandscapeLeft:       // Device oriented horizontally, home button on the right
+            if (isUsingFrontFacingCamera)
+                exifOrientation = PHOTOS_EXIF_0ROW_BOTTOM_0COL_RIGHT;
+            else
+                exifOrientation = PHOTOS_EXIF_0ROW_TOP_0COL_LEFT;
+            break;
+        case UIDeviceOrientationLandscapeRight:      // Device oriented horizontally, home button on the left
+            if (isUsingFrontFacingCamera)
+                exifOrientation = PHOTOS_EXIF_0ROW_TOP_0COL_LEFT;
+            else
+                exifOrientation = PHOTOS_EXIF_0ROW_BOTTOM_0COL_RIGHT;
+            break;
+        case UIDeviceOrientationPortrait:            // Device oriented vertically, home button on the bottom
+        default:
+            exifOrientation = PHOTOS_EXIF_0ROW_RIGHT_0COL_TOP;
+            break;
+    }
+    
+    imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
+    NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
+    
+    CMFormatDescriptionRef fdesc = CMSampleBufferGetFormatDescription(sampleBuffer);
+    CGRect clap = CMVideoFormatDescriptionGetCleanAperture(fdesc, false /*originIsTopLeft == false*/);
 }
 
 #pragma mark - State Information
