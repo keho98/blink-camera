@@ -73,6 +73,24 @@
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     self.frameCountLabel.text = [NSString stringWithFormat:@"%zd", detector.frameCount];
+    return;
+}
+
+- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink
+{
+    [UIView animateKeyframesWithDuration:0.5
+                                   delay:0
+                                 options:0
+                              animations:^{
+                                  [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.5 animations:^{
+                                      self.frameCountLabel.backgroundColor = [UIColor blueColor];
+                                  }];
+                                  [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
+                                      self.frameCountLabel.backgroundColor = [UIColor clearColor];
+                                  }];
+                              }
+                              completion:nil];
+    return;
 }
 
 @end

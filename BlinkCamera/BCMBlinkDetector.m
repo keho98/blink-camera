@@ -19,6 +19,8 @@
     self = [super init];
     if (self) {
         self.frameCount = 0;
+        NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
+        faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
         isUsingFrontFacingCamera = YES;
     }
     return self;
@@ -167,9 +169,9 @@
     
     imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
     NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
-    
-    CMFormatDescriptionRef fdesc = CMSampleBufferGetFormatDescription(sampleBuffer);
-    CGRect clap = CMVideoFormatDescriptionGetCleanAperture(fdesc, false /*originIsTopLeft == false*/);
+    if ([features count] <= 0) {
+        [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
+    }
 }
 
 #pragma mark - State Information
