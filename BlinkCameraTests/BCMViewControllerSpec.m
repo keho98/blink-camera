@@ -1,18 +1,34 @@
 #import "Kiwi.h"
 #import "BCMViewController.h"
+#import "BCMBlinkDetector.h"
 #import <FastttCamera.h>
 
 SPEC_BEGIN(BCMViewControllerSpec)
 
 describe(@"BCMViewController", ^{
+    __block BCMViewController *subject;
+    beforeEach(^{
+        subject = [[BCMViewController alloc] init];
+    });
+    
+    it(@"should not autorotate", ^{
+        [[theValue([subject shouldAutorotate]) should] beFalse];
+    });
+    
     context(@"on load", ^{
-        __block BCMViewController *subject;
         beforeEach(^{
-            subject = [[BCMViewController alloc] init];
+            subject.blinkDetector = [BCMBlinkDetector mock];
+            [subject viewDidLoad];
         });
-                
-        it(@"should not autorotate", ^{
-            [[theValue([subject shouldAutorotate]) should] equal:theValue(NO)];
+    
+        it(@"should configure the blink detector", ^{
+            [[subject.blinkDetector should] receive:@selector(configureNewSession)];
+        });
+    });
+    
+    context(@"when a face is detected", ^{
+        beforeEach(^{
+            
         });
     });
 });

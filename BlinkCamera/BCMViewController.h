@@ -12,6 +12,7 @@
 @interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate>
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
+@property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 
 @end
 

@@ -10,7 +10,6 @@
 
 @interface BCMViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
-@property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 
 @end
 
