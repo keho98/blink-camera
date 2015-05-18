@@ -27,6 +27,7 @@
 
 - (void) _init {
     self.blinkDetector = [[BCMBlinkDetector alloc] init];
+    self.cameraSession = [[BCMCameraSession alloc] init];
 }
 
 - (void)viewDidLoad

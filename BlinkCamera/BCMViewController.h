@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BCMBlinkDetector.h"
+#import "BCMCameraSession.h"
 
 @interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate>
 - (void)takePicture;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
+@property (strong, nonatomic) BCMCameraSession *cameraSession;
 
 @end
 
