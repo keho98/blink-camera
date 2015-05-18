@@ -10,6 +10,8 @@
 #import "BCMBlinkDetector.h"
 
 @interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate>
+- (void)takePicture;
+
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;

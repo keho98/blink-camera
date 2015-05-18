@@ -55,6 +55,12 @@
     return NO;
 }
 
+#pragma mark - Photo Handling
+
+- (void)takePicture {
+    
+}
+
 #pragma mark - IBAction
 
 - (IBAction)didTapTakePhotoButton:(id)sender
@@ -77,6 +83,7 @@
 
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink
 {
+    [self takePicture];
     [UIView animateKeyframesWithDuration:0.5
                                    delay:0
                                  options:0

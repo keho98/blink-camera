@@ -28,7 +28,11 @@ describe(@"BCMViewController", ^{
     
     context(@"when a face is detected", ^{
         beforeEach(^{
-            
+            [subject blinkDetector:nil didReceiveBlink:nil];
+        });
+        
+        it(@"should take a photo", ^{
+            [[subject should] receive:@selector(takePicture)];
         });
     });
 });
