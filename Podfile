@@ -6,6 +6,6 @@ target 'BlinkCamera' do
 end
 
 target 'BlinkCameraTests', :exclusive => true do
-    pod 'Kiwi'
+    pod 'Cedar'
 end
 

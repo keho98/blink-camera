@@ -8,17 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */; };
-		D208FC851AEF5E780006D06C /* BCMViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC841AEF5E780006D06C /* BCMViewControllerSpec.m */; };
 		D208FC881AF1FFBD0006D06C /* BCMBlinkDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */; };
 		D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D208FC891AF1FFED0006D06C /* AVFoundation.framework */; };
-		D208FC8C1AF359160006D06C /* BCMBlinkDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC8B1AF359160006D06C /* BCMBlinkDetector.m */; };
 		D24B866E1AEB484300CEDE67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B866D1AEB484300CEDE67 /* main.m */; };
 		D24B86711AEB484300CEDE67 /* BCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B86701AEB484300CEDE67 /* BCMAppDelegate.m */; };
 		D24B86741AEB484300CEDE67 /* BCMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24B86731AEB484300CEDE67 /* BCMViewController.m */; };
 		D24B86771AEB484300CEDE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24B86751AEB484300CEDE67 /* Main.storyboard */; };
 		D24B86791AEB484300CEDE67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D24B86781AEB484300CEDE67 /* Images.xcassets */; };
 		D24B867C1AEB484300CEDE67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24B867A1AEB484300CEDE67 /* LaunchScreen.xib */; };
-		D28449401AEDA712002D2A2D /* BCMAppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D284493F1AEDA712002D2A2D /* BCMAppDelegateSpec.m */; };
 		D2AB54811B09BC48007E677A /* BCMCameraSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AB54801B09BC48007E677A /* BCMCameraSession.m */; };
 		D2E27E491B01C4F000481B65 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E27E481B01C4F000481B65 /* CoreImage.framework */; };
 		E91D8320B32250989E81B090 /* libPods-BlinkCameraTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A987D2FE78FC8A9C926D940 /* libPods-BlinkCameraTests.a */; };
@@ -41,11 +38,9 @@
 		4FE8D1FAF3654A3B7C7A810A /* Pods-BlinkCameraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCameraTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCameraTests/Pods-BlinkCameraTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6484030B58658070762A0D83 /* Pods-BlinkCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCamera/Pods-BlinkCamera.release.xcconfig"; sourceTree = "<group>"; };
 		7DA7CE6BF2B7F242E8BBD7A5 /* Pods-BlinkCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCameraTests/Pods-BlinkCameraTests.release.xcconfig"; sourceTree = "<group>"; };
-		D208FC841AEF5E780006D06C /* BCMViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMViewControllerSpec.m; sourceTree = "<group>"; };
 		D208FC861AF1FFBD0006D06C /* BCMBlinkDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMBlinkDetector.h; sourceTree = "<group>"; };
 		D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMBlinkDetector.m; sourceTree = "<group>"; };
 		D208FC891AF1FFED0006D06C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		D208FC8B1AF359160006D06C /* BCMBlinkDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMBlinkDetector.m; sourceTree = "<group>"; };
 		D24B86681AEB484300CEDE67 /* BlinkCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24B866C1AEB484300CEDE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D24B866D1AEB484300CEDE67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -58,7 +53,6 @@
 		D24B867B1AEB484300CEDE67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D24B86811AEB484300CEDE67 /* BlinkCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24B86861AEB484300CEDE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D284493F1AEDA712002D2A2D /* BCMAppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMAppDelegateSpec.m; sourceTree = "<group>"; };
 		D2AB547F1B09BC48007E677A /* BCMCameraSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMCameraSession.h; sourceTree = "<group>"; };
 		D2AB54801B09BC48007E677A /* BCMCameraSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMCameraSession.m; sourceTree = "<group>"; };
 		D2E27E481B01C4F000481B65 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -148,9 +142,6 @@
 		D24B86841AEB484300CEDE67 /* BlinkCameraTests */ = {
 			isa = PBXGroup;
 			children = (
-				D284493F1AEDA712002D2A2D /* BCMAppDelegateSpec.m */,
-				D208FC841AEF5E780006D06C /* BCMViewControllerSpec.m */,
-				D208FC8B1AF359160006D06C /* BCMBlinkDetector.m */,
 				D24B86851AEB484300CEDE67 /* Supporting Files */,
 			);
 			path = BlinkCameraTests;
@@ -355,9 +346,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D208FC8C1AF359160006D06C /* BCMBlinkDetector.m in Sources */,
-				D208FC851AEF5E780006D06C /* BCMViewControllerSpec.m in Sources */,
-				D28449401AEDA712002D2A2D /* BCMAppDelegateSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
