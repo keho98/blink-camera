@@ -35,6 +35,7 @@
     [super viewDidLoad];
     
     [self.blinkDetector configureNewSession];
+    [self.cameraSession configureNewSession];
 }
 
 - (void)viewDidLayoutSubviews

@@ -10,4 +10,8 @@
 
 @implementation BCMCameraSession
 
+- (void)configureNewSession {
+    return;
+}
+
 @end

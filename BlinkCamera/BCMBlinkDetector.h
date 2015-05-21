@@ -17,10 +17,10 @@
 - (void)configureNewSession;
 - (AVCaptureVideoPreviewLayer *)previewLayer;
 
-
 @end
 
 @protocol BCMBlinkDetectorDelegate
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink;
+
 @end
