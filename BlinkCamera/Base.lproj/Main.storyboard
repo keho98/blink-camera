@@ -95,7 +95,7 @@
                     </view>
                     <connections>
                         <outlet property="blinkView" destination="dyk-20-K1i" id="0Qr-J3-TlU"/>
-                        <outlet property="camerView" destination="RT0-np-7LV" id="KrV-wg-n22"/>
+                        <outlet property="cameraView" destination="RT0-np-7LV" id="1cs-bB-5zo"/>
                         <outlet property="frameCountLabel" destination="pe7-6l-O1p" id="o9F-iX-OYc"/>
                         <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
                     </connections>

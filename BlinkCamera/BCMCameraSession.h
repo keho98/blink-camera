@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface BCMCameraSession : NSObject
 - (void)configureNewSession;
+- (AVCaptureVideoPreviewLayer *)previewLayer;
 
 @end
