@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT0-np-7LV" userLabel="Camera View">
+                                <rect key="frame" x="16" y="60" width="568" height="540"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyk-20-K1i" userLabel="Blink View">
                                 <rect key="frame" x="16" y="68" width="568" height="524"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -52,7 +56,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pe7-6l-O1p">
-                                <rect key="frame" x="524" y="33" width="60" height="21"/>
+                                <rect key="frame" x="524" y="33" width="60" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="7pQ-wW-Mif"/>
                                 </constraints>
@@ -63,8 +67,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="RT0-np-7LV" secondAttribute="trailing" id="A5Q-zo-pVa"/>
                             <constraint firstItem="dyk-20-K1i" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="A8K-SR-FfS"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="RT0-np-7LV" secondAttribute="bottom" id="AwS-UY-aco"/>
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="centerY" secondItem="5Ha-dz-JhR" secondAttribute="centerY" id="B8A-Ag-hvM"/>
+                            <constraint firstItem="RT0-np-7LV" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="130" id="Q2B-mb-nWB"/>
                             <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="dyk-20-K1i" secondAttribute="leading" id="QfD-uI-6XV"/>
                             <constraint firstAttribute="centerX" secondItem="ytb-T7-BdA" secondAttribute="centerX" id="SXf-5R-3oi"/>
                             <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="Xne-xl-gjx"/>
@@ -72,7 +79,9 @@
                             <constraint firstItem="ytb-T7-BdA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="gcx-S2-b8o"/>
                             <constraint firstItem="5Ha-dz-JhR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="jaK-XX-1r3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dyk-20-K1i" secondAttribute="trailing" id="o2A-rd-mvg"/>
+                            <constraint firstItem="RT0-np-7LV" firstAttribute="top" secondItem="ytb-T7-BdA" secondAttribute="bottom" id="oYb-x7-gcg"/>
                             <constraint firstItem="pe7-6l-O1p" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="pbq-im-c0h"/>
+                            <constraint firstItem="RT0-np-7LV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="sUJ-tU-eo5"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dyk-20-K1i" secondAttribute="bottom" constant="8" id="ucS-MI-Hpt"/>
                             <constraint firstItem="dyk-20-K1i" firstAttribute="top" secondItem="5Ha-dz-JhR" secondAttribute="bottom" constant="8" id="wvN-Is-Ui0"/>
                         </constraints>
@@ -80,11 +89,13 @@
                             <mask key="constraints">
                                 <exclude reference="QfD-uI-6XV"/>
                                 <exclude reference="Xne-xl-gjx"/>
+                                <exclude reference="Q2B-mb-nWB"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="blinkView" destination="dyk-20-K1i" id="0Qr-J3-TlU"/>
+                        <outlet property="camerView" destination="RT0-np-7LV" id="KrV-wg-n22"/>
                         <outlet property="frameCountLabel" destination="pe7-6l-O1p" id="o9F-iX-OYc"/>
                         <outlet property="takePhotoButton" destination="ytb-T7-BdA" id="9Ek-W7-cv4"/>
                     </connections>
