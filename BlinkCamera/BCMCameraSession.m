@@ -15,7 +15,7 @@
 }
 
 - (AVCaptureVideoPreviewLayer *)previewLayer {
-    
+    return nil;
 }
 
 @end
