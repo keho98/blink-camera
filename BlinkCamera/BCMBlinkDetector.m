@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         self.frameCount = 0;
-        NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
+        NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
         faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
         isUsingFrontFacingCamera = YES;
     }
@@ -110,8 +110,8 @@
         {
             //Not granted access to mediaType
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[[UIAlertView alloc] initWithTitle:@"AVCam!"
-                                            message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+                [[[UIAlertView alloc] initWithTitle:@"BlinkCamera"
+                                            message:@"BlinkCamera doesn't have permission to use Camera, please change privacy settings"
                                            delegate:self
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil] show];
