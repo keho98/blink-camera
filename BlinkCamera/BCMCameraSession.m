@@ -8,6 +8,13 @@
 
 #import "BCMCameraSession.h"
 
+@interface BCMCameraSession ()
+@property (nonatomic, strong) dispatch_queue_t sessionQueue;
+@property (nonatomic, strong) AVCaptureSession *session;
+
+@property (nonatomic, assign) BOOL isDeviceAuthorized;
+@end
+
 @implementation BCMCameraSession
 
 - (void)configureNewSession {
@@ -15,7 +22,9 @@
 }
 
 - (AVCaptureVideoPreviewLayer *)previewLayer {
-    return nil;
+    AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    return previewLayer;
 }
 
 @end
