@@ -14,17 +14,22 @@ describe(@"BCMViewController", ^{
 
     beforeEach(^{
         subject = [[BCMViewController alloc] init];
-        blinkDetector = nice_fake_for([BCMBlinkDetector class]);
-        cameraSession = nice_fake_for([BCMCameraSession class]);
+    });
 
-        subject.blinkDetector = blinkDetector;
-        subject.cameraSession = cameraSession;
-        
-        spy_on(subject);
+    it(@"should be its blink detector's delegate", ^{
+        subject.blinkDetector.delegate should be_same_instance_as(subject);
     });
 
     describe(@"on load", ^{
         beforeEach(^{
+            blinkDetector = nice_fake_for([BCMBlinkDetector class]);
+            cameraSession = nice_fake_for([BCMCameraSession class]);
+
+            subject.blinkDetector = blinkDetector;
+            subject.cameraSession = cameraSession;
+
+            spy_on(subject);
+
             subject.view should_not be_nil;
         });
         
@@ -35,15 +40,15 @@ describe(@"BCMViewController", ^{
         it(@"should configure a camera session", ^{
             subject.cameraSession should have_received(@selector(configureNewSession));
         });
-    });
 
-    describe(@"when a blink is received", ^{
-        beforeEach(^{
-            [subject blinkDetector:blinkDetector didReceiveBlink:nil];
-        });
-        
-        it(@"should take a photo", ^{
-            subject should have_received(@selector(takePicture));
+        describe(@"when a blink is received", ^{
+            beforeEach(^{
+                [subject blinkDetector:blinkDetector didReceiveBlink:nil];
+            });
+
+            it(@"should take a photo", ^{
+                subject should have_received(@selector(takePicture));
+            });
         });
     });
 });

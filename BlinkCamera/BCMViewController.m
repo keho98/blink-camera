@@ -25,9 +25,19 @@
     return self;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self _init];
+    }
+    return self;
+}
+
 - (void) _init {
     self.blinkDetector = [[BCMBlinkDetector alloc] init];
     self.cameraSession = [[BCMCameraSession alloc] init];
+
+    self.blinkDetector.delegate = self;
 }
 
 - (void)viewDidLoad
@@ -79,7 +89,6 @@
 
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
-    self.frameCountLabel.text = [NSString stringWithFormat:@"%zd", detector.frameCount];
     return;
 }
 

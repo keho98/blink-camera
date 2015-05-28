@@ -19,7 +19,8 @@
     self = [super init];
     if (self) {
         self.frameCount = 0;
-        NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
+        NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
+                                         //YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
         faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
         isUsingFrontFacingCamera = YES;
     }
@@ -61,7 +62,7 @@
         return;
     }
     
-    AVCaptureVideoDataOutput *videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
+    videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
     NSDictionary *rgbOutputSettings = [NSDictionary dictionaryWithObject:
                                        [NSNumber numberWithInt:kCMPixelFormat_32BGRA]
                                                                   forKey:(id)kCVPixelBufferPixelFormatTypeKey];
@@ -77,6 +78,7 @@
 
 - (void)record {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
         [self.session startRunning];
     }];
 }
