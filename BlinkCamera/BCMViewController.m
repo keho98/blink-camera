@@ -51,7 +51,7 @@
 - (void)viewDidLayoutSubviews
 {
     AVCaptureVideoPreviewLayer *previewLayer = [self.blinkDetector previewLayer];
-    previewLayer.frame = self.blinkView.frame;
+    previewLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.blinkView.frame), CGRectGetHeight(self.blinkView.frame));
     
     [self.blinkView.layer insertSublayer:previewLayer atIndex:0];
 }
