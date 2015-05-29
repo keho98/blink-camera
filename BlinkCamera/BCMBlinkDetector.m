@@ -174,7 +174,7 @@
     
     imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
     NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
-    if ([features count] <= 0) {
+    if ([features count] > 0) {
         [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
     }
 }
