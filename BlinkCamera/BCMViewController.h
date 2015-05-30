@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 @property (strong, nonatomic) BCMCameraSession *cameraSession;
+@property (assign, nonatomic) BOOL blinking;
 
 - (void)takePicture;
 @end

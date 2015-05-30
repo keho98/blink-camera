@@ -11,6 +11,7 @@
 @interface BCMViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
+
 @end
 
 @implementation BCMViewController
@@ -95,19 +96,25 @@
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink
 {
     [self takePicture];
-    [UIView animateKeyframesWithDuration:0.5
-                                   delay:0
-                                 options:0
-                              animations:^{
-                                  [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:0.5 animations:^{
-                                      self.frameCountLabel.backgroundColor = [UIColor blueColor];
-                                  }];
-                                  [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
-                                      self.frameCountLabel.backgroundColor = [UIColor clearColor];
-                                  }];
-                              }
-                              completion:nil];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        self.blinking = YES;
+    }];
     return;
+}
+
+#pragma mark - Property Setters & Getters
+
+- (void)setBlinking:(BOOL)blinking
+{
+    if (_blinking != blinking) {
+        if (blinking) {
+            self.frameCountLabel.backgroundColor = [UIColor greenColor];
+        }
+        else {
+            self.frameCountLabel.backgroundColor = [UIColor clearColor];
+        }
+        _blinking = blinking;
+    }
 }
 
 @end

@@ -20,6 +20,10 @@ describe(@"BCMViewController", ^{
         subject.blinkDetector.delegate should be_same_instance_as(subject);
     });
 
+    it(@"should not be blinking", ^{
+        subject.blinking should be_falsy;
+    });
+
     describe(@"on load", ^{
         beforeEach(^{
             blinkDetector = nice_fake_for([BCMBlinkDetector class]);
@@ -48,6 +52,14 @@ describe(@"BCMViewController", ^{
 
             it(@"should take a photo", ^{
                 subject should have_received(@selector(takePicture));
+            });
+
+            it(@"should be blinking", ^{
+                subject.blinking should be_truthy;
+            });
+
+            it(@"should show that a blink is detected", ^{
+                subject.frameCountLabel.backgroundColor should equal([UIColor greenColor]);
             });
         });
     });
