@@ -57,10 +57,6 @@ describe(@"BCMViewController", ^{
             it(@"should be blinking", ^{
                 subject.blinking should be_truthy;
             });
-
-            it(@"should show that a blink is detected", ^{
-                subject.frameCountLabel.backgroundColor should equal([UIColor greenColor]);
-            });
         });
     });
 });

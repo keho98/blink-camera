@@ -96,9 +96,7 @@
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink
 {
     [self takePicture];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.blinking = YES;
-    }];
+    self.blinking = YES;
     return;
 }
 
@@ -107,12 +105,15 @@
 - (void)setBlinking:(BOOL)blinking
 {
     if (_blinking != blinking) {
-        if (blinking) {
-            self.frameCountLabel.backgroundColor = [UIColor greenColor];
-        }
-        else {
-            self.frameCountLabel.backgroundColor = [UIColor clearColor];
-        }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (blinking) {
+                self.frameCountLabel.backgroundColor = [UIColor greenColor];
+            }
+            else {
+                self.frameCountLabel.backgroundColor = [UIColor clearColor];
+            }
+        }];
+
         _blinking = blinking;
     }
 }
