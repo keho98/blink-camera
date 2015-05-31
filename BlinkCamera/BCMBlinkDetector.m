@@ -10,6 +10,7 @@
 @property (nonatomic) AVCaptureDeviceInput *videoDeviceInput;
 
 @property (nonatomic, assign) BOOL isDeviceAuthorized;
+@property (nonatomic, assign) BOOL isFaceDetected;
 
 @end
 
@@ -19,6 +20,7 @@
     self = [super init];
     if (self) {
         self.frameCount = 0;
+        self.isFaceDetected = NO;
         NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
                                          //YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
         faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
@@ -184,7 +186,7 @@
         for (CIFaceFeature *feature in features) {
             NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));
         }
-        [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
+        [self.delegate blinkDetectorDidDetectFace:self];
     }
 }
 
