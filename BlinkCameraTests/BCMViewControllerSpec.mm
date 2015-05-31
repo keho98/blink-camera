@@ -45,6 +45,10 @@ describe(@"BCMViewController", ^{
             subject.cameraSession should have_received(@selector(configureNewSession));
         });
 
+        it(@"should start the blink detector session", ^{
+            subject.blinkDetector should have_received(@selector(start));
+        });
+
         describe(@"when a blink is received", ^{
             beforeEach(^{
                 [subject blinkDetector:blinkDetector didReceiveBlink:nil];

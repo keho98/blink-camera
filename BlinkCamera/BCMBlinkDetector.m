@@ -76,7 +76,7 @@
     }
 }
 
-- (void)record {
+- (void)start {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
         [self.session startRunning];
@@ -172,9 +172,18 @@
             break;
     }
     
-    imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
+    imageOptions = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:exifOrientation],
+                    CIDetectorImageOrientation,
+                    @(YES),
+                    CIDetectorEyeBlink,
+                    nil];
+
+    //[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
     NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
     if ([features count] > 0) {
+        for (CIFaceFeature *feature in features) {
+            NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));
+        }
         [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
     }
 }

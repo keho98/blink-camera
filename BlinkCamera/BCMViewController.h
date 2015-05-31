@@ -14,10 +14,14 @@
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
+
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
 @property (strong, nonatomic) BCMCameraSession *cameraSession;
+
 @property (assign, nonatomic) BOOL blinking;
+@property (strong, nonatomic) NSTimer *timer;
 
 - (void)takePicture;
+
 @end
 

@@ -14,7 +14,7 @@
 @property (assign, nonatomic) NSInteger frameCount;
 @property (weak, nonatomic) id<BCMBlinkDetectorDelegate>delegate;
 
-- (void)record;
+- (void)start;
 - (void)configureNewSession;
 - (AVCaptureVideoPreviewLayer *)previewLayer;
 

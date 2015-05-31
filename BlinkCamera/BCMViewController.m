@@ -11,7 +11,6 @@
 @interface BCMViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
-
 @end
 
 @implementation BCMViewController
@@ -47,6 +46,8 @@
     
     [self.blinkDetector configureNewSession];
     [self.cameraSession configureNewSession];
+
+    [self.blinkDetector start];
 }
 
 - (void)viewDidLayoutSubviews
@@ -83,7 +84,7 @@
 
 - (IBAction)didTapRecordButton:(id)sender
 {
-    [self.blinkDetector record];
+
 }
 
 #pragma mark - <BCMBlinkDetectorDelegate>
