@@ -22,7 +22,7 @@
         self.isFaceDetected = NO;
         NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
                                          //YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
-        faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
+        self.faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
         isUsingFrontFacingCamera = YES;
     }
     return self;
@@ -177,7 +177,7 @@
                     CIDetectorEyeBlink,
                     nil];
     
-    NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
+    NSArray *features = [self.faceDetector featuresInImage:ciImage options:imageOptions];
     if ([features count] > 0) {
         for (CIFaceFeature *feature in features) {
             NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));

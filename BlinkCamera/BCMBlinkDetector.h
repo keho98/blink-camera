@@ -6,11 +6,11 @@
 @interface BCMBlinkDetector : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
 {
     BOOL isUsingFrontFacingCamera;
-    CIDetector *faceDetector;
     AVCaptureVideoDataOutput *videoDataOutput;
 }
 
-@property AVCaptureDevice *device;
+@property (strong, nonatomic) CIDetector *faceDetector;
+@property (strong, nonatomic)  AVCaptureDevice *device;
 @property (weak, nonatomic) id<BCMBlinkDetectorDelegate>delegate;
 
 - (void)start;
