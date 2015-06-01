@@ -179,14 +179,15 @@
                     @(YES),
                     CIDetectorEyeBlink,
                     nil];
-
-    //[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
+    
     NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
     if ([features count] > 0) {
         for (CIFaceFeature *feature in features) {
             NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));
         }
         [self.delegate blinkDetectorDidDetectFace:self];
+    } else {
+        [self.delegate blinkDetectorDidEndDetectingFace:self];
     }
 }
 

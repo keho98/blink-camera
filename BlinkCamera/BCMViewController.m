@@ -34,14 +34,16 @@
 }
 
 - (void) _init {
-    self.blinkDetector = [[BCMBlinkDetector alloc] init];
-    self.cameraSession = [[BCMCameraSession alloc] init];
+    _blinkDetector = [[BCMBlinkDetector alloc] init];
+    _cameraSession = [[BCMCameraSession alloc] init];
+
+    _faceDetected = NO;
+    _blinking = NO;
 
     self.blinkDetector.delegate = self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.blinkDetector configureNewSession];
@@ -50,22 +52,19 @@
     [self.blinkDetector start];
 }
 
-- (void)viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews {
     AVCaptureVideoPreviewLayer *previewLayer = [self.blinkDetector previewLayer];
     previewLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.blinkView.frame), CGRectGetHeight(self.blinkView.frame));
     
     [self.blinkView.layer insertSublayer:previewLayer atIndex:0];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotate
-{
+- (BOOL)shouldAutorotate {
     return NO;
 }
 
@@ -77,45 +76,48 @@
 
 #pragma mark - IBAction
 
-- (IBAction)didTapTakePhotoButton:(id)sender
-{
+- (IBAction)didTapTakePhotoButton:(id)sender {
     
 }
 
-- (IBAction)didTapRecordButton:(id)sender
-{
+- (IBAction)didTapRecordButton:(id)sender {
 
 }
 
 #pragma mark - <BCMBlinkDetectorDelegate>
 
-- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer
-{
+- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer {
     return;
 }
 
-- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink
-{
+- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink {
     [self takePicture];
     self.blinking = YES;
     return;
 }
 
+- (void)blinkDetectorDidDetectFace:(BCMBlinkDetector *)detector {
+    self.faceDetected = YES;
+}
+
+- (void)blinkDetectorDidEndDetectingFace:(BCMBlinkDetector *)detector {
+    self.faceDetected = NO;
+}
+
 #pragma mark - Property Setters & Getters
 
-- (void)setBlinking:(BOOL)blinking
-{
+- (void)setBlinking:(BOOL)blinking {
     if (_blinking != blinking) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (blinking) {
-                self.frameCountLabel.backgroundColor = [UIColor greenColor];
-            }
-            else {
-                self.frameCountLabel.backgroundColor = [UIColor clearColor];
-            }
-        }];
-
         _blinking = blinking;
+    }
+}
+
+- (void)setFaceDetected:(BOOL)faceDetected {
+    if (_faceDetected != faceDetected) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.frameCountLabel.backgroundColor = faceDetected ? [UIColor greenColor] : [UIColor clearColor];
+        }];
+        _faceDetected = faceDetected;
     }
 }
 

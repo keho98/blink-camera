@@ -19,6 +19,7 @@
 @property (strong, nonatomic) BCMCameraSession *cameraSession;
 
 @property (assign, nonatomic) BOOL blinking;
+@property (assign, nonatomic) BOOL faceDetected;
 @property (strong, nonatomic) NSTimer *timer;
 
 - (void)takePicture;

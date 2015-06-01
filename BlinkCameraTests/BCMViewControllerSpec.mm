@@ -62,6 +62,26 @@ describe(@"BCMViewController", ^{
                 subject.blinking should be_truthy;
             });
         });
+
+        describe(@"when a face is detected", ^{
+            beforeEach(^{
+                [subject blinkDetectorDidDetectFace:blinkDetector];
+            });
+
+            it(@"should detect a face", ^{
+                subject.faceDetected should be_truthy;
+            });
+
+            describe(@"when a detecting a face ends", ^{
+                beforeEach(^{
+                    [subject blinkDetectorDidEndDetectingFace:blinkDetector];
+                });
+
+                it(@"should not detect a face", ^{
+                    subject.faceDetected should be_falsy;
+                });
+            });
+        });
     });
 });
 
