@@ -11,7 +11,6 @@
 }
 
 @property AVCaptureDevice *device;
-@property (assign, nonatomic) NSInteger frameCount;
 @property (weak, nonatomic) id<BCMBlinkDetectorDelegate>delegate;
 
 - (void)start;

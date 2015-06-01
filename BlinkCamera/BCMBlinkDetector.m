@@ -19,7 +19,6 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
-        self.frameCount = 0;
         self.isFaceDetected = NO;
         NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
                                          //YES, CIDetectorTracking, YES, CIDetectorEyeBlink, nil];
@@ -103,7 +102,6 @@
 
 - (void)requestPermissions {
     NSString *mediaType = AVMediaTypeVideo;
-    
     [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
         if (granted)
         {
@@ -129,7 +127,6 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    self.frameCount++;    
     [self.delegate blinkDetector:self didReceiveSampleBuffer:sampleBuffer];
     
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);

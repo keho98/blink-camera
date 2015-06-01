@@ -120,15 +120,15 @@
 			children = (
 				D24B866F1AEB484300CEDE67 /* BCMAppDelegate.h */,
 				D24B86701AEB484300CEDE67 /* BCMAppDelegate.m */,
-				D24B86721AEB484300CEDE67 /* BCMViewController.h */,
-				D24B86731AEB484300CEDE67 /* BCMViewController.m */,
-				D2AB547F1B09BC48007E677A /* BCMCameraSession.h */,
-				D2AB54801B09BC48007E677A /* BCMCameraSession.m */,
-				D24B86751AEB484300CEDE67 /* Main.storyboard */,
 				D208FC861AF1FFBD0006D06C /* BCMBlinkDetector.h */,
 				D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */,
+				D2AB547F1B09BC48007E677A /* BCMCameraSession.h */,
+				D2AB54801B09BC48007E677A /* BCMCameraSession.m */,
+				D24B86721AEB484300CEDE67 /* BCMViewController.h */,
+				D24B86731AEB484300CEDE67 /* BCMViewController.m */,
 				D24B86781AEB484300CEDE67 /* Images.xcassets */,
 				D24B867A1AEB484300CEDE67 /* LaunchScreen.xib */,
+				D24B86751AEB484300CEDE67 /* Main.storyboard */,
 				D24B866B1AEB484300CEDE67 /* Supporting Files */,
 			);
 			path = BlinkCamera;
