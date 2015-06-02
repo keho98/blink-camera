@@ -10,7 +10,6 @@ SPEC_BEGIN(BCMViewControllerSpec)
 describe(@"BCMViewController", ^{
     __block BCMViewController *subject;
     __block BCMBlinkDetector *blinkDetector;
-    __block BCMCameraSession *cameraSession;
 
     beforeEach(^{
         subject = [[BCMViewController alloc] init];
@@ -27,10 +26,8 @@ describe(@"BCMViewController", ^{
     describe(@"on load", ^{
         beforeEach(^{
             blinkDetector = nice_fake_for([BCMBlinkDetector class]);
-            cameraSession = nice_fake_for([BCMCameraSession class]);
 
             subject.blinkDetector = blinkDetector;
-            subject.cameraSession = cameraSession;
 
             spy_on(subject);
 
@@ -39,10 +36,6 @@ describe(@"BCMViewController", ^{
         
         it(@"should configure a blink detector session", ^{
             subject.blinkDetector should have_received(@selector(configureNewSession));
-        });
-
-        it(@"should configure a camera session", ^{
-            subject.cameraSession should have_received(@selector(configureNewSession));
         });
 
         it(@"should start the blink detector session", ^{

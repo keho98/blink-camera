@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FastttCamera.h>
 #import "BCMBlinkDetector.h"
 #import "BCMCameraSession.h"
 
-@interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate>
+@interface BCMViewController : UIViewController <BCMBlinkDetectorDelegate, FastttCameraDelegate>
 @property (weak, nonatomic) IBOutlet UIView *cameraView;
 @property (weak, nonatomic) IBOutlet UIView *blinkView;
 @property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
 
 @property (strong, nonatomic) BCMBlinkDetector *blinkDetector;
-@property (strong, nonatomic) BCMCameraSession *cameraSession;
+@property (strong, nonatomic) FastttCamera *fastCamera;
 
 @property (assign, nonatomic) BOOL blinking;
 @property (assign, nonatomic) BOOL faceDetected;
