@@ -36,6 +36,23 @@ describe(@"BCMBlinkDetector", ^{
         });
     });
 
+    describe(@"when a blink is detected", ^{
+        beforeEach(^{
+            faceFeature stub_method(@selector(leftEyeClosed)).and_return(YES);
+            faceFeature stub_method(@selector(rightEyeClosed)).and_return(YES);
+
+            faceDetector = nice_fake_for([CIDetector class]);
+            faceDetector stub_method(@selector(featuresInImage:options:)).and_return(@[faceFeature]);
+            subject.faceDetector = faceDetector;
+
+            [subject captureOutput:nil didOutputSampleBuffer:nil fromConnection:nil];
+        });
+
+        it(@"should call -blinkDetector:DidReceiveBlink: on its delegate ", ^{
+            delegate should have_received(@selector(blinkDetector:didReceiveBlink:));
+        });
+    });
+
     describe(@"when a face is not detected", ^{
         beforeEach(^{
             faceDetector = nice_fake_for([CIDetector class]);
