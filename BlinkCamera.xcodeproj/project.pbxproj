@@ -475,6 +475,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin Ho (TP52XY5S7H)";
 				INFOPLIST_FILE = BlinkCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PODS_ROOT = "$(SRCROOT)/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -487,6 +488,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin Ho (TP52XY5S7H)";
 				INFOPLIST_FILE = BlinkCamera/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PODS_ROOT = "$(SRCROOT)/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
