@@ -180,7 +180,6 @@
     NSArray *features = [self.faceDetector featuresInImage:ciImage options:imageOptions];
     if ([features count] > 0) {
         for (CIFaceFeature *feature in features) {
-            NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));
             if (feature.leftEyeClosed && feature.rightEyeClosed) {
                 [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
             }

@@ -35,7 +35,6 @@
 
 - (void) _init {
     _blinkDetector = [[BCMBlinkDetector alloc] init];
-    _fastCamera = [[FastttCamera alloc] init];
 
     _faceDetected = NO;
     _blinking = NO;
@@ -45,8 +44,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.fastCamera.delegate = self;
     
     [self.blinkDetector configureNewSession];
     [self.blinkDetector start];
@@ -55,7 +52,7 @@
 - (void)viewDidLayoutSubviews {
     AVCaptureVideoPreviewLayer *previewLayer = [self.blinkDetector previewLayer];
     previewLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.blinkView.frame), CGRectGetHeight(self.blinkView.frame));
-    
+
     [self.blinkView.layer insertSublayer:previewLayer atIndex:0];
 }
 
