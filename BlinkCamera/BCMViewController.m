@@ -77,7 +77,8 @@
 #pragma mark - IBAction
 
 - (IBAction)didTapTakePhotoButton:(id)sender {
-    
+    [self.blinkDetector switchCameras];
+    [self.blinkDetector switchCameras];
 }
 
 - (IBAction)didTapRecordButton:(id)sender {

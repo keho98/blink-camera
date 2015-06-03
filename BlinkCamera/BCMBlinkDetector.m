@@ -123,10 +123,33 @@
     }];
 }
 
+- (void)switchCameras {
+    AVCaptureDevicePosition desiredPosition;
+    if (isUsingFrontFacingCamera)
+        desiredPosition = AVCaptureDevicePositionBack;
+    else
+        desiredPosition = AVCaptureDevicePositionFront;
+
+    for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+        if ([d position] == desiredPosition) {
+            [self.session beginConfiguration];
+            AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:d error:nil];
+            for (AVCaptureInput *oldInput in [self.session inputs]) {
+                [self.session removeInput:oldInput];
+            }
+            [self.session addInput:input];
+            [self.session commitConfiguration];
+            break;
+        }
+    }
+    isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
+}
+
 #pragma mark - <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
+    return;
     [self.delegate blinkDetector:self didReceiveSampleBuffer:sampleBuffer];
     
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);

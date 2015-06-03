@@ -15,6 +15,7 @@
 
 - (void)start;
 - (void)configureNewSession;
+- (void)switchCameras;
 - (AVCaptureVideoPreviewLayer *)previewLayer;
 
 @end
