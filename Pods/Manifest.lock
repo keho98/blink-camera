@@ -1,15 +1,10 @@
 PODS:
   - Cedar (0.11.3)
-  - FastttCamera (0.2.9):
-    - FastttCamera/Default (= 0.2.9)
-  - FastttCamera/Default (0.2.9)
 
 DEPENDENCIES:
   - Cedar
-  - FastttCamera
 
 SPEC CHECKSUMS:
   Cedar: ab1ea4e5c8af4ee4a8fa0452936679861876dc80
-  FastttCamera: bd173337377bcf4f1fb698bab3362fcf2914039c
 
 COCOAPODS: 0.36.0.beta.1

@@ -2,7 +2,6 @@
 # platform :ios, '6.0'
 
 target 'BlinkCamera' do
-    pod 'FastttCamera'
 end
 
 target 'BlinkCameraTests', :exclusive => true do

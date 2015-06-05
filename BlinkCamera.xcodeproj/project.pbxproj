@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */; };
 		D208FC881AF1FFBD0006D06C /* BCMBlinkDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */; };
 		D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D208FC891AF1FFED0006D06C /* AVFoundation.framework */; };
 		D228938E1B12985200646D81 /* BCMBlinkDetectorSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = D228938D1B12985200646D81 /* BCMBlinkDetectorSpec.mm */; };
@@ -36,9 +35,7 @@
 /* Begin PBXFileReference section */
 		0A987D2FE78FC8A9C926D940 /* libPods-BlinkCameraTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlinkCameraTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		152D34013E3177EC55528FF9 /* libPods-BlinkCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlinkCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		275D6DC531DD41C3977D1F70 /* Pods-BlinkCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCamera/Pods-BlinkCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		4FE8D1FAF3654A3B7C7A810A /* Pods-BlinkCameraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCameraTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCameraTests/Pods-BlinkCameraTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6484030B58658070762A0D83 /* Pods-BlinkCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCamera/Pods-BlinkCamera.release.xcconfig"; sourceTree = "<group>"; };
 		7DA7CE6BF2B7F242E8BBD7A5 /* Pods-BlinkCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlinkCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlinkCameraTests/Pods-BlinkCameraTests.release.xcconfig"; sourceTree = "<group>"; };
 		D208FC861AF1FFBD0006D06C /* BCMBlinkDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMBlinkDetector.h; sourceTree = "<group>"; };
 		D208FC871AF1FFBD0006D06C /* BCMBlinkDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMBlinkDetector.m; sourceTree = "<group>"; };
@@ -69,7 +66,6 @@
 			files = (
 				D2E27E491B01C4F000481B65 /* CoreImage.framework in Frameworks */,
 				D208FC8A1AF1FFED0006D06C /* AVFoundation.framework in Frameworks */,
-				CCED932EA94EC02DE02210AD /* libPods-BlinkCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,8 +160,6 @@
 		E079491A3DCBDB3466208CEE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				275D6DC531DD41C3977D1F70 /* Pods-BlinkCamera.debug.xcconfig */,
-				6484030B58658070762A0D83 /* Pods-BlinkCamera.release.xcconfig */,
 				4FE8D1FAF3654A3B7C7A810A /* Pods-BlinkCameraTests.debug.xcconfig */,
 				7DA7CE6BF2B7F242E8BBD7A5 /* Pods-BlinkCameraTests.release.xcconfig */,
 			);
@@ -183,7 +177,6 @@
 				D24B86641AEB484300CEDE67 /* Sources */,
 				D24B86651AEB484300CEDE67 /* Frameworks */,
 				D24B86661AEB484300CEDE67 /* Resources */,
-				917B7169066C2C84C4A45BA1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -316,21 +309,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		917B7169066C2C84C4A45BA1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BlinkCamera/Pods-BlinkCamera-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -469,7 +447,6 @@
 		};
 		D24B868C1AEB484300CEDE67 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 275D6DC531DD41C3977D1F70 /* Pods-BlinkCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin Ho (TP52XY5S7H)";
@@ -482,7 +459,6 @@
 		};
 		D24B868D1AEB484300CEDE67 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6484030B58658070762A0D83 /* Pods-BlinkCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin Ho (TP52XY5S7H)";
