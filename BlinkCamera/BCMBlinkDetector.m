@@ -149,9 +149,6 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    return;
-    [self.delegate blinkDetector:self didReceiveSampleBuffer:sampleBuffer];
-    
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
     CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(__bridge NSDictionary *)attachments];
@@ -203,7 +200,6 @@
     NSArray *features = [self.faceDetector featuresInImage:ciImage options:imageOptions];
     if ([features count] > 0) {
         for (CIFaceFeature *feature in features) {
-            NSLog(@"================> Left Eye: %@, Right Eye: %@", @(feature.leftEyeClosed), @(feature.rightEyeClosed));
             if (feature.leftEyeClosed && feature.rightEyeClosed) {
                 [self.delegate blinkDetector:self didReceiveBlink:[[CIFeature alloc] init]];
             }

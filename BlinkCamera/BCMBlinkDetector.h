@@ -21,7 +21,6 @@
 @end
 
 @protocol BCMBlinkDetectorDelegate
-- (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 - (void)blinkDetector:(BCMBlinkDetector *)detector didReceiveBlink:(CIFeature *)blink;
 - (void)blinkDetectorDidDetectFace:(BCMBlinkDetector *)detector;
 - (void)blinkDetectorDidEndDetectingFace:(BCMBlinkDetector *)detector;
