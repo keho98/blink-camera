@@ -7,6 +7,7 @@
 {
     BOOL isUsingFrontFacingCamera;
     AVCaptureVideoDataOutput *videoDataOutput;
+    AVCaptureStillImageOutput *stillImageOutput;
 }
 
 @property (strong, nonatomic) CIDetector *faceDetector;

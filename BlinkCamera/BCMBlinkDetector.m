@@ -14,6 +14,8 @@
 
 @end
 
+static const NSString *AVCaptureStillImageIsCapturingStillImageContext = @"AVCaptureStillImageIsCapturingStillImageContext";
+
 @implementation BCMBlinkDetector
 
 -(instancetype)init {
@@ -62,6 +64,11 @@
         NSLog(@"Could not add input");
         return;
     }
+
+    stillImageOutput = [AVCaptureStillImageOutput new];
+    [stillImageOutput addObserver:self forKeyPath:@"capturingStillImage" options:NSKeyValueObservingOptionNew context:(__bridge void *)(AVCaptureStillImageIsCapturingStillImageContext)];
+    if ( [session canAddOutput:stillImageOutput] )
+        [session addOutput:stillImageOutput];
     
     videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
     NSDictionary *rgbOutputSettings = [NSDictionary dictionaryWithObject:
@@ -143,6 +150,98 @@
         }
     }
     isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
+}
+
+- (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:(UIDeviceOrientation)deviceOrientation
+{
+    AVCaptureVideoOrientation result = deviceOrientation;
+    if ( deviceOrientation == UIDeviceOrientationLandscapeLeft )
+        result = AVCaptureVideoOrientationLandscapeRight;
+    else if ( deviceOrientation == UIDeviceOrientationLandscapeRight )
+        result = AVCaptureVideoOrientationLandscapeLeft;
+    return result;
+}
+
+- (IBAction)takePicture:(id)sender
+{
+    // Find out the current orientation and tell the still image output.
+    AVCaptureConnection *stillImageConnection = [stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+    UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
+    AVCaptureVideoOrientation avcaptureOrientation = [self avOrientationForDeviceOrientation:curDeviceOrientation];
+    [stillImageConnection setVideoOrientation:avcaptureOrientation];
+    [stillImageConnection setVideoScaleAndCropFactor:1.0];
+
+    [stillImageOutput captureStillImageAsynchronouslyFromConnection:stillImageConnection
+                                                  completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+                                                      if (error) {
+                                                          [self displayErrorOnMainQueue:error withMessage:@"Take picture failed"];
+                                                      }
+                                                      else {
+                                                          if (doingFaceDetection) {
+                                                              // Got an image.
+                                                              CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(imageDataSampleBuffer);
+                                                              CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
+                                                              CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(NSDictionary *)attachments];
+                                                              if (attachments)
+                                                                  CFRelease(attachments);
+
+                                                              NSDictionary *imageOptions = nil;
+                                                              NSNumber *orientation = CMGetAttachment(imageDataSampleBuffer, kCGImagePropertyOrientation, NULL);
+                                                              if (orientation) {
+                                                                  imageOptions = [NSDictionary dictionaryWithObject:orientation forKey:CIDetectorImageOrientation];
+                                                              }
+
+                                                              // when processing an existing frame we want any new frames to be automatically dropped
+                                                              // queueing this block to execute on the videoDataOutputQueue serial queue ensures this
+                                                              // see the header doc for setSampleBufferDelegate:queue: for more information
+                                                              dispatch_sync(videoDataOutputQueue, ^(void) {
+
+                                                                  // get the array of CIFeature instances in the given image with a orientation passed in
+                                                                  // the detection will be done based on the orientation but the coordinates in the returned features will
+                                                                  // still be based on those of the image.
+                                                                  NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
+                                                                  CGImageRef srcImage = NULL;
+                                                                  OSStatus err = CreateCGImageFromCVPixelBuffer(CMSampleBufferGetImageBuffer(imageDataSampleBuffer), &srcImage);
+                                                                  check(!err);
+                                                                  
+                                                                  CGImageRef cgImageResult = [self newSquareOverlayedImageForFeatures:features 
+                                                                                                                            inCGImage:srcImage 
+                                                                                                                      withOrientation:curDeviceOrientation 
+                                                                                                                          frontFacing:isUsingFrontFacingCamera];
+                                                                  if (srcImage)
+                                                                      CFRelease(srcImage);
+                                                                  
+                                                                  CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, 
+                                                                                                                              imageDataSampleBuffer, 
+                                                                                                                              kCMAttachmentMode_ShouldPropagate);
+                                                                  [self writeCGImageToCameraRoll:cgImageResult withMetadata:(id)attachments];
+                                                                  if (attachments)
+                                                                      CFRelease(attachments);
+                                                                  if (cgImageResult)
+                                                                      CFRelease(cgImageResult);
+                                                                  
+                                                              });
+
+                                                          }
+                                                          else {
+                                                              // trivial simple JPEG case
+                                                              NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                                                              CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, 
+                                                                                                                          imageDataSampleBuffer, 
+                                                                                                                          kCMAttachmentMode_ShouldPropagate);
+                                                              ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                                                              [library writeImageDataToSavedPhotosAlbum:jpegData metadata:(id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
+                                                                  if (error) {
+                                                                      [self displayErrorOnMainQueue:error withMessage:@"Save to camera roll failed"];
+                                                                  }
+                                                              }];
+                                                              
+                                                              if (attachments)
+                                                                  CFRelease(attachments);
+                                                          }
+                                                      }
+                                                  }
+     ];
 }
 
 #pragma mark - <AVCaptureVideoDataOutputSampleBufferDelegate>
